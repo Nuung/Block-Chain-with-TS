@@ -20,4 +20,27 @@ sayHi(name, age, gender); // js에서 인자가 하나 없어도 실행 시킬�
 sayHi(name, age, "213"); // 숫자를 넣으면 컴파일이 안될꺼임 -> 데이터 형과 다르니까 
 console.log(sayHiTwo("!@3123", 123, "FDsg"));
 
+//------------------------------------------------------------------------// 
+
+// 하단 #0.6 Interfaces on Typescript / JS에서는 안되는 것들 
+// 블록체인에서 하나의 블럭이 interface가 될 수 있다. 
+interface Human {
+    name: String;
+    age: Number;
+    gender: String;
+}
+
+const person = { // object를 하나 만들었다 
+    name: "Hyeon Woo, Jeong",
+    age: 22,
+    gender: "male"
+};
+
+// object를 표현하는 방법이다 / interface의 atribute와 type을 바로 알 수 있음 
+const sayHiToHuman = (person: Human): void => { // type자체가 interface 'Human'이 되었다 
+    console.log(`Hello ${person.name}, you are ${person.age} and ${person.gender}`);
+};
+
+sayHiToHuman(person);
+
 export {}; // 이거 없으면 변수 선언 할 수 없다고 뜰꺼임 
