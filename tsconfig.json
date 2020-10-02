@@ -1,0 +1,20 @@
+/* 
+ TypeScript 에게 어떻게 Javascript로 변환하는지 알려준다 + 옵션을 준다 
+ include는 컴파일 과정에 어떤 놈들을 포함할 것 인가의 '배열' / exclude는 반대
+ tsc 라는 cli 명령어로 js.map 파일을 만들 수 있다. 파일을 확인해보면 어떻게 컴파일 될 건지 한줄로 나오는 걸 볼 수 있다.
+ tsc 대신 yarn start를 사용하자 -> package json 에서 "scripts": { "start": "node index.js", "prestart": "tsc" }
+ Node는 typescript를 모르기 때문에 ts를 nomal한 js로 바꿔주는 작업이 필요한 것 이다 
+*/
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES2015",
+        "sourceMap": true
+    },
+    "include": [
+        "index.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
