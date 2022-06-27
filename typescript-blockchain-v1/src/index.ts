@@ -196,7 +196,7 @@ const addBlock = (candidateBlock: Block): void => {
   }
 };
 
-for (let i = 0; i <= 3; i++) createNewBlock(i + 1 + "th block");    
+for (let i = 0; i <= 23; i++) createNewBlock(i + 1 + "th block");    
 console.log(blockchain);
 
 export {};
