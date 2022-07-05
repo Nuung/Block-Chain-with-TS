@@ -110,8 +110,75 @@ dict.def("kimchi");
 ## 인터페이스!
 
 - 위에서 dict, word 등의 class는 모두 public 이다!!
+- word 의 멤버변수를 외부 접근해서 수정을 막으려면 ***readonly***를 붙이면 된다.
+    - 데이터 덮어쓰기 방지! 접근만 가능!
+    - ts만의 것이다. js에서는 readonly가 없다!
+- static은 js에도 있다, ts 만의 문법이 아님!
+    - class자체.staticmethod 로 접근해서 호출 가능
+- interface는 type과 같으면서 다르다. type을 복기해 보자
+- 하지만 ts에만 존재하고 js에서는 interface란 없다!
 
 ```typescript
+// type Team = string; 
+// 위 대신에 특정 string으로 Category를 fix할 수 있다 => java enum을 생각해보자! 
+type Team = "red" | "blue" | "yellow"; 
+
+type Player = {
+    nickname: string,
+    // team: string, 
+    // 위 값을 특정 string만 가능하게!
+    team: Team
+};
+
+const nico: Player = {
+    nickname: "nico",
+    team: "red" // not white or black!! (can't)
+}
+
+/**
+ * @desc 오브젝트를 설명하는 다른 방법인 인터페이스!
+ */
+
+interface Person {
+    nickname: string,
+    team: Team
+}
+
+=> 오직 한가지의 용도로만 사용할 수 있다, type은 이보다 더 자유롭도 다양하다!
+=> 오브젝트의 모양을 특정, fix 해주기 위한 것이다. 
+
+// interface Hello = string; // 이런것은 못한다! alias같은것 못한다!!
+
+// OOP의 class 처럼 느껴진다.
+// extends와 같이 상속이 된다.
+
+interface User {
+    readonly name: string
+}
+
+interface Player extends User {
+
+}
+
+const nico : Player = {
+    name: "nico"
+}
+
+=> 위가 type으로 된다면, 
+=> 아래와 같이 이뤄진다. "&" 연산자를 보자!
+
+type UserType = {
+    name: string
+}
+
+type PlayerType = UserType & {
+
+}
+
+const hyeonwoo : Player = {
+    name: "nico"
+}
+
 
 ```
 
