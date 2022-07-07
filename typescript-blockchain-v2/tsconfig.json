@@ -1,0 +1,29 @@
+/* 
+    TypeScript 에게 어떻게 Javascript로 변환하는지 알려준다 + 옵션을 준다 
+    include는 컴파일 과정에 어떤 놈들을 포함할 것 인가의 '배열' / exclude는 반대
+    tsc 라는 cli 명령어로 js.map 파일을 만들 수 있다. 파일을 확인해보면 어떻게 컴파일 될 건지 한줄로 나오는 걸 볼 수 있다.
+    tsc 대신 yarn start를 사용하자 -> package json 에서 "scripts": { "start": "node index.js", "prestart": "tsc" }
+    Node는 typescript를 모르기 때문에 ts를 nomal한 js로 바꿔주는 작업이 필요한 것 이다 
+ 
+    lib은 은 "library declaration" -> js가 어디에서 동작할지 알려주는 것, 어떤 환경인지, 어떤 js 버전인지 알려주는 것
+    DOM은 브라우저 / 이걸 씀으로써 document를 사용하면 전역 object로 선언된 것들에 대한 method를 모두 보여주고~ 라이브러리를 다 보여주고~ 인식하고~ 하는 것
+
+    ts에서 js 파일의 모양을 설명해야 한다 -> Type Definition, myPackage.js 파일을 TS에서 import하는 과정을 생각해보자! 
+*/
+{
+    "compilerOptions": {
+        "outDir": "build",
+        "esModuleInterop": true,
+        "target": "ES6",
+        "lib": ["ES6", "DOM"],
+        "strict": true,
+        "allowJs": true
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "src/quiz/*"
+    ]
+}

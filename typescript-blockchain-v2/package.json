@@ -1,0 +1,14 @@
+{
+  "name": "typescript-blockchain-v2",
+  "version": "1.0.0",
+  "description": "nomad coder typescript",
+  "scripts": {
+    "build": "tsc"
+  },
+  "main": "index.js",
+  "author": "Nuung",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  }
+}
