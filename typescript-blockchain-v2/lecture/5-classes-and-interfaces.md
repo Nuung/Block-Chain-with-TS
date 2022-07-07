@@ -182,3 +182,89 @@ const hyeonwoo : Player = {
 
 ```
 
+---
+
+## 인터페이스 챕터 2
+
+- 추상 클래스의 추상 메서드와 인터페이스의 차이점을 살펴보자
+- interface는 js로 컴파일되면 사라진다 -> "경량"
+
+```typescript
+
+abstract class User {
+    constructor(
+        protected firstName: string,
+        protected lastName: string
+    ) {}
+    
+    // 어떻게 보단 "무엇을" 구현해야하는지 명시한다!
+    abstract sayHi(name: string): string
+    abstract fullName(): string
+}
+
+// new User() 등의 행위는 당연하게 작동 X
+
+// Player는 abstract method를 꼭 구현해야만 한다!!
+class Player extends User {
+    fullName() {
+        // this로 접근 가능 한 이뉴는 protected 라서 접근 가능한 것
+        return `${this.fristName} ${this.lastName}`;
+    }
+
+    sayHi(name: string) {
+        return `Hello ${name}. My name is ${this.fullName()}`;
+    }
+}
+
+```
+
+- 위 user를 모두 interface로 바꾸면?
+
+```typescript
+interface User {
+    firstName: string,
+    lastName: string,
+
+    // method
+    sayHi(name: string): string
+    fullName(): string
+}
+
+interface Human {
+    health: number
+}
+
+
+// extends가 아니라 implements! => js에서는 존재하지 않는다!! => 최적화 및 파일사이즈 줄어듬!!
+// 하지만 필수로 명시를 해야할 것들에 대해 (구현해야 할 것들에 대해) ts단에서 error를 다 내준다!
+// 게다가 다중 상속이 된다는 것!
+class Player implements User, Human  {
+    constructor(
+        // 인터페이스를 implements할때는 private, protected로 멤버변수를 만들지 못한다!!
+        // public으로만 된다!
+        public firstName: string,
+        public lastName: string,
+        public health: number
+    ) {}
+
+    fullName() {
+        // this로 접근 가능 한 이뉴는 protected 라서 접근 가능한 것
+        return `${this.fristName} ${this.lastName}`;
+    }
+
+    sayHi(name: string) {
+        return `Hello ${name}. My name is ${this.fullName()}`;
+    }    
+}
+
+// interface를 type처럼 쓸 수 있다!
+const makeUser = (user: User) => { return "hi" };
+makeUser({
+    firstName: "g",
+    lastName: "ame",
+    fullName: () => "sd",
+    sayHi: (name) => "str"
+});
+
+// 위 와 같이 말이다! 또 return type으로 당연히 활용 가능하다!!!
+```
