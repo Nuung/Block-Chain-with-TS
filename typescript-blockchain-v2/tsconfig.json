@@ -13,11 +13,12 @@
 {
     "compilerOptions": {
         "outDir": "build",
-        "esModuleInterop": true,
         "target": "ES6",
-        "lib": ["ES6", "DOM"],
+        "lib": ["ES6"], // "lib": ["ES6", "DOM"],
         "strict": true,
-        "allowJs": true
+                // "allowJs": true, // ts + js 동시 사용 허용 ~ JDoc이 js에 존재하면 ts와 동시사용 가능
+        "esModuleInterop": true,
+        "module": "CommonJS"
     },
     "include": [
         "src/**/*"
